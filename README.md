@@ -139,7 +139,7 @@ See [`DEPLOY.md`](DEPLOY.md) for the full setup.
 ## التأليف · Authorship
 
 **Author:** عماد فايز البلوي · Emad Fayez Al-Balawi
-B.Sc. Computer Science · Fahd bin Sultan University
+B.Sc. Computer Science · Prince Fahd bin Sultan University
 
 **AI Tooling Disclosure:** This codebase was scaffolded with the
 assistance of [Anthropic's Claude Code](https://claude.com/claude-code).

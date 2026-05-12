@@ -293,8 +293,8 @@ export default function About() {
               </h3>
               <p className="text-xs leading-relaxed text-[var(--text-secondary)]">
                 {isAr
-                  ? "عماد البلوي — بكالوريوس علوم حاسب، جامعة فهد بن سلطان. مسؤول عن الرؤية، والمعمارية، والقرارات التصميمية، ومراجعة كل سطر شيفرة قبل دمجه."
-                  : "Emad Albalawi — BSc Computer Science, Fahd bin Sultan University. Responsible for the vision, architecture, design decisions, and review of every line of code before it is merged."}
+                  ? "عماد البلوي — بكالوريوس علوم حاسب، جامعة الأمير فهد بن سلطان. مسؤول عن الرؤية، والمعمارية، والقرارات التصميمية، ومراجعة كل سطر شيفرة قبل دمجه."
+                  : "Emad Albalawi — BSc Computer Science, Prince Fahd bin Sultan University. Responsible for the vision, architecture, design decisions, and review of every line of code before it is merged."}
               </p>
             </div>
             <div className="p-6 rounded-xl bg-[var(--bg-surface)] border border-[var(--border-color)]">
