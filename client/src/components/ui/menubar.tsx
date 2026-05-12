@@ -1,5 +1,5 @@
 // © 2026 Mithaq Technology. All Rights Reserved. | ميثاق للتقنية
-// Unauthorized use prohibited. | mithaq.sa | mithaq.support@gmail.com
+// Unauthorized use prohibited. | mithaq.sa | emad.cs.albalawi@gmail.com
 import * as React from "react";
 import * as MenubarPrimitive from "@radix-ui/react-menubar";
 import { CheckIcon, ChevronRightIcon, CircleIcon } from "lucide-react";

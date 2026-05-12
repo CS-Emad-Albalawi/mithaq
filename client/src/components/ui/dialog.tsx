@@ -1,5 +1,5 @@
 // © 2026 Mithaq Technology. All Rights Reserved. | ميثاق للتقنية
-// Unauthorized use prohibited. | mithaq.sa | mithaq.support@gmail.com
+// Unauthorized use prohibited. | mithaq.sa | emad.cs.albalawi@gmail.com
 import { cn } from "@/lib/utils";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { XIcon } from "lucide-react";

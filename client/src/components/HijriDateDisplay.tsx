@@ -1,5 +1,5 @@
 // © 2026 Mithaq Technology. All Rights Reserved. | ميثاق للتقنية
-// Unauthorized use prohibited. | mithaq.sa | mithaq.support@gmail.com
+// Unauthorized use prohibited. | mithaq.sa | emad.cs.albalawi@gmail.com
 import { useState, useEffect } from "react";
 import { Calendar, Clock } from "lucide-react";
 import { Badge } from "@/components/ui/badge";

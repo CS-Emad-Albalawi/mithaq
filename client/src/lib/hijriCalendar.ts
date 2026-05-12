@@ -1,5 +1,5 @@
 // © 2026 Mithaq Technology. All Rights Reserved. | ميثاق للتقنية
-// Unauthorized use prohibited. | mithaq.sa | mithaq.support@gmail.com
+// Unauthorized use prohibited. | mithaq.sa | emad.cs.albalawi@gmail.com
 /**
  * Hijri Calendar Utilities for Mithaq
  * Full support for Hijri/Gregorian conversion, Arabic numerals, and Saudi date formatting

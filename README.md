@@ -14,7 +14,7 @@
 
 [الموقع المباشر · Live Site](https://mithaq.pages.dev) ·
 [الوثيقة · Spec (v5.0)](#) ·
-[التواصل · Contact](mailto:man970323@gmail.com)
+[التواصل · Contact](mailto:emad.cs.albalawi@gmail.com)
 
 </div>
 
@@ -159,7 +159,7 @@ review and reference — but is **not licensed for commercial reuse**
 without prior written consent.
 
 For inquiries, licensing, or collaboration:
-**man970323@gmail.com**
+**emad.cs.albalawi@gmail.com**
 
 ---
 

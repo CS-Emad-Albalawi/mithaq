@@ -1,5 +1,5 @@
 // © 2026 Mithaq Technology. All Rights Reserved. | ميثاق للتقنية
-// Unauthorized use prohibited. | mithaq.sa | mithaq.support@gmail.com
+// Unauthorized use prohibited. | mithaq.sa | emad.cs.albalawi@gmail.com
 /**
  * ErrorBoundary — Mithaq Platform
  * Catches React rendering errors and shows a user-friendly Arabic error page
@@ -117,13 +117,13 @@ class ErrorBoundary extends Component<Props, State> {
             <p className="text-xs mt-8" style={{ color: "#334155" }}>
               للدعم الفني:{" "}
               <a
-                href="mailto:mithaq.support@gmail.com"
+                href="mailto:emad.cs.albalawi@gmail.com"
                 className="transition-colors"
                 style={{ color: "#2E5A9E" }}
                 onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.color = "#6FCF97"; }}
                 onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.color = "#2E5A9E"; }}
               >
-                mithaq.support@gmail.com
+                emad.cs.albalawi@gmail.com
               </a>
             </p>
           </div>
