@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- PWA maskable icon — Mithaq trefoil at 512px. Same composition
+       as icon-192.svg, scaled and detailed for the larger surface
+       (slightly heavier strokes + larger centre accents for visual
+       weight). -->
+  <rect width="512" height="512" rx="112" fill="#0A1628"/>
+
+  <defs>
+    <radialGradient id="m512deep" cx="256" cy="256" r="175" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#3D6FBF"/>
+      <stop offset="55%" stop-color="#1E3A6B"/>
+      <stop offset="100%" stop-color="#0A1F3D"/>
+    </radialGradient>
+    <radialGradient id="m512bright" cx="256" cy="256" r="175" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#B8D4F5"/>
+      <stop offset="100%" stop-color="#5A8FD8"/>
+    </radialGradient>
+  </defs>
+
+  <g transform="translate(256, 268)">
+    <g fill="none" stroke="url(#m512deep)" stroke-width="29" stroke-linejoin="round">
+      <path d="M 0,-165 C 43,-165 66,-96 48,-48 Q 30,-24 0,-8 Q -30,-24 -48,-48 C -66,-96 -43,-165 0,-165 Z"/>
+      <path d="M 0,-165 C 43,-165 66,-96 48,-48 Q 30,-24 0,-8 Q -30,-24 -48,-48 C -66,-96 -43,-165 0,-165 Z" transform="rotate(120)"/>
+      <path d="M 0,-165 C 43,-165 66,-96 48,-48 Q 30,-24 0,-8 Q -30,-24 -48,-48 C -66,-96 -43,-165 0,-165 Z" transform="rotate(240)"/>
+    </g>
+    <g fill="none" stroke="url(#m512bright)" stroke-width="8.5" stroke-linejoin="round">
+      <path d="M 0,-165 C 43,-165 66,-96 48,-48 Q 30,-24 0,-8 Q -30,-24 -48,-48 C -66,-96 -43,-165 0,-165 Z"/>
+      <path d="M 0,-165 C 43,-165 66,-96 48,-48 Q 30,-24 0,-8 Q -30,-24 -48,-48 C -66,-96 -43,-165 0,-165 Z" transform="rotate(120)"/>
+      <path d="M 0,-165 C 43,-165 66,-96 48,-48 Q 30,-24 0,-8 Q -30,-24 -48,-48 C -66,-96 -43,-165 0,-165 Z" transform="rotate(240)"/>
+    </g>
+
+    <!-- Bind triangle + centre node, scaled to match -->
+    <path d="M 0,-26 L 22.5,13 L -22.5,13 Z" fill="none" stroke="#7BA8E0" stroke-width="3.8" stroke-linejoin="round" opacity="0.9"/>
+    <circle cx="0" cy="0" r="6.4" fill="#B8D4F5"/>
+  </g>
+</svg>

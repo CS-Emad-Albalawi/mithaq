@@ -1,0 +1,55 @@
+# Cloudflare Pages headers — portfolio scope, fully static site.
+#
+# The previous version of this file noted a separate Express server
+# that owned the API surface; that server no longer exists for this
+# brochure deployment. The headers below cover the entire app since
+# everything is now client-side (Contact form composes mailto: /
+# wa.me URLs locally).
+#
+# CSP rationale (global directives below /*):
+#   - default-src 'self'   — block everything not otherwise allowed
+#   - script-src 'self' 'unsafe-inline'
+#       'unsafe-inline' is required because:
+#         (a) JSON-LD blocks in index.html
+#         (b) the tiny theme-bootstrap inline <script>
+#         (c) some Radix UI primitives set inline event handlers
+#       The XSS surface is tiny: no user input ever round-trips
+#       through the server, and the Contact form composes URLs
+#       client-side without rendering user-controlled HTML.
+#   - style-src + font-src — whitelist Google Fonts only
+#   - img-src — allow data: URIs (used by some lucide icons)
+#       and blob: (used by canvas exports if any feature ever
+#       adds one)
+#   - connect-src 'self'   — no remote APIs are called; analytics
+#       (if env vars set) would need an additional origin here
+#   - frame-ancestors 'none' — prevent clickjacking embedding
+#   - form-action 'none'    — no form submits anywhere (Contact uses
+#       mailto:/wa.me URLs which trigger the OS handler, not POST)
+#   - base-uri 'self'       — prevent <base> injection attacks
+#   - object-src 'none'     — block Flash / plugins entirely
+#   - upgrade-insecure-requests — auto-upgrade http:// → https://
+
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=(), usb=()
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Resource-Policy: same-origin
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self'; frame-ancestors 'none'; form-action 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests
+
+# Vite emits hashed filenames under /assets — safe to cache aggressively.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Logos are stable but not content-hashed; cache for a day so a swap
+# can propagate without a full Pages rebuild on every edit.
+/mithaq-logo*
+  Cache-Control: public, max-age=86400
+
+# Static icons / manifest — cache for a week
+/icon-*.svg
+  Cache-Control: public, max-age=604800
+/manifest.json
+  Cache-Control: public, max-age=604800

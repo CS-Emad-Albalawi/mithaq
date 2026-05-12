@@ -1,0 +1,182 @@
+/* ═══════════════════════════════════════════════════════════════
+   Mithaq Design Tokens — Custom Theme Variables
+   Convention matches shadcn/ui:
+     :root    = Light mode (default)
+     .dark    = Dark mode (applied via class on <html>)
+
+   Palette source: docs/MITHAQ_SPEC.docx §1.4
+     Primary deep navy: #0A2647
+     Dark shadows:      #041C40
+     Light gradient:    #2E5A9E
+     Mid blue:          #144272
+     Light accent:      #2C74B3
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Light mode (default) ── */
+:root {
+  --bg-primary: #F5F8FC;
+  --bg-surface: #FFFFFF;
+  --bg-surface-2: #EAF0F8;
+  --bg-surface-3: #D8E3F2;
+  --border-color: #BFD0E5;
+  --border-subtle: #D8E3F2;
+
+  --text-primary: #0A2647;
+  --text-secondary: #2C4A73;
+  --text-muted: #5A75A0;
+
+  --navy-primary: #0A2647;
+  --navy-accent:  #2C74B3;
+  --navy-light:   #2E5A9E;
+  --navy-mid:     #144272;
+  --navy-dark:    #041C40;
+  --navy-glow:    rgba(20,66,114,0.2);
+
+  --btn-primary-bg: #0A2647;
+  --btn-primary-text: #FFFFFF;
+  --btn-primary-hover: #144272;
+  --btn-outline-border: #0A2647;
+  --btn-outline-text: #0A2647;
+
+  --card-bg: #FFFFFF;
+  --card-border: #BFD0E5;
+  --card-hover: #EAF0F8;
+
+  --input-bg: #FFFFFF;
+  --input-border: #BFD0E5;
+  --input-focus: #144272;
+  --input-text: #0A2647;
+  --input-placeholder: #6B82A8;
+
+  --navbar-bg: rgba(245,248,252,0.95);
+  --footer-bg: #E0E9F5;
+
+  --badge-bg: #D8E3F2;
+  --badge-text: #0A2647;
+  --badge-border: #BFD0E5;
+}
+
+/* ── Dark mode ── */
+.dark {
+  --bg-primary: #050B14;
+  --bg-surface: #0A1424;
+  --bg-surface-2: #0F1F38;
+  --bg-surface-3: #16294E;
+  --border-color: #16294E;
+  --border-subtle: #0F1F38;
+
+  --text-primary: #E8EEF5;
+  --text-secondary: #9DB0CC;
+  --text-muted: #6B82A8;
+
+  --navy-primary: #2E5A9E;
+  --navy-accent:  #2C74B3;
+  --navy-light:   #3B6BB8;
+  --navy-mid:     #144272;
+  --navy-dark:    #041C40;
+  --navy-glow:    rgba(46,90,158,0.3);
+
+  --btn-primary-bg: #144272;
+  --btn-primary-text: #FFFFFF;
+  --btn-primary-hover: #2C74B3;
+  --btn-outline-border: #2C74B3;
+  --btn-outline-text: #2E5A9E;
+
+  --card-bg: #0A1424;
+  --card-border: #16294E;
+  --card-hover: #0F1F38;
+
+  --input-bg: #0A1424;
+  --input-border: #16294E;
+  --input-focus: #2C74B3;
+  --input-text: #E8EEF5;
+  --input-placeholder: #6B82A8;
+
+  --navbar-bg: rgba(5,11,20,0.95);
+  --footer-bg: #030710;
+
+  --badge-bg: #0F1F38;
+  --badge-text: #2E5A9E;
+  --badge-border: #16294E;
+}
+
+/* ── Font classes for language switching ── */
+.font-arabic {
+  font-family: "IBM Plex Sans Arabic", "Inter", system-ui, -apple-system, sans-serif;
+}
+.font-latin {
+  font-family: "Inter", "IBM Plex Sans Arabic", system-ui, -apple-system, sans-serif;
+}
+
+/* ── Global resets using tokens ── */
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ── Interactive hover effects ── */
+button,
+[role="button"] {
+  transition: all 0.2s ease;
+}
+
+button:hover,
+[role="button"]:hover {
+  box-shadow: 0 0 0 2px var(--navy-glow);
+}
+
+/* Cards: subtle lift and border glow on hover */
+[class*="rounded-2xl"][class*="border"],
+[class*="rounded-xl"][class*="border"],
+.glass-card {
+  transition: all 0.2s ease;
+}
+
+[class*="rounded-2xl"][class*="border"]:hover,
+[class*="rounded-xl"][class*="border"]:hover,
+.glass-card:hover {
+  border-color: var(--navy-primary);
+  transform: translateY(-1px);
+}
+
+/* Nav and footer links */
+nav a, footer a {
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+  text-decoration: underline transparent;
+  text-underline-offset: 4px;
+}
+nav a:hover, footer a:hover {
+  color: var(--navy-accent);
+  text-decoration-color: var(--navy-accent);
+}
+
+/* Input fields: navy glow on focus */
+input:focus, textarea:focus, select:focus {
+  border-color: var(--input-focus) !important;
+  box-shadow: 0 0 0 3px var(--navy-glow);
+  outline: none;
+}
+
+/* Mithaq glow animation */
+@keyframes mithaqPulse {
+  0%, 100% { filter: drop-shadow(0 0 6px var(--navy-glow)); }
+  50%      { filter: drop-shadow(0 0 18px rgba(44,116,179,0.9)); }
+}
+
+/* Glass morphism card */
+.glass-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--navy-primary); }
+
+/* Selection */
+::selection { background: var(--navy-primary); color: white; }

@@ -1,0 +1,5 @@
+# Cloudflare Pages SPA fallback (Session 6.B).
+# Wouter does client-side routing, so any deep link (e.g.,
+# /express-interest/thanks) hit by a browser refresh must serve
+# index.html and let the SPA take over.
+/*    /index.html   200

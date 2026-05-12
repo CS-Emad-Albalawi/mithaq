@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /spoke-login
+Disallow: /sign-up
+Disallow: /download
+Disallow: /forgot-password
+Disallow: /reset-password
+
+Sitemap: https://mithaq.sa/sitemap.xml

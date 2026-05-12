@@ -1,0 +1,8 @@
+Contact: mailto:security@mithaq.sa
+Expires: 2027-04-19T00:00:00Z
+Preferred-Languages: ar, en
+Canonical: https://mithaq.sa/.well-known/security.txt
+Policy: https://mithaq.sa/docs/vulnerability-disclosure-policy
+Encryption: https://mithaq.sa/.well-known/security-pgp.asc
+Acknowledgments: https://mithaq.sa/trust#acknowledgments
+Hiring: https://mithaq.sa/careers

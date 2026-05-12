@@ -1,0 +1,793 @@
+/* ============================================================
+   Mithaq Design System — Enterprise BI Grade
+   shadcn/ui (new-york) + Tailwind CSS v4
+   Color philosophy: Clean white/slate base + Mithaq navy accents
+   Palette source: docs/MITHAQ_SPEC.docx §1.4 (navy #0A2647 / #144272 / #2C74B3)
+   ============================================================ */
+
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "./styles/tokens.css";
+/* Fonts are loaded in client/index.html via <link> tags for faster preconnect — do not duplicate here. */
+
+/* ============================================================
+   TAILWIND v4 THEME — shadcn/ui compatible
+   ============================================================ */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+  --color-background:              var(--background);
+  --color-foreground:              var(--foreground);
+  --color-card:                    var(--card);
+  --color-card-foreground:         var(--card-foreground);
+  --color-popover:                 var(--popover);
+  --color-popover-foreground:      var(--popover-foreground);
+  --color-primary:                 var(--primary);
+  --color-primary-foreground:      var(--primary-foreground);
+  --color-secondary:               var(--secondary);
+  --color-secondary-foreground:    var(--secondary-foreground);
+  --color-muted:                   var(--muted);
+  --color-muted-foreground:        var(--muted-foreground);
+  --color-accent:                  var(--accent);
+  --color-accent-foreground:       var(--accent-foreground);
+  --color-destructive:             var(--destructive);
+  --color-destructive-foreground:  var(--destructive-foreground);
+  --color-border:                  var(--border);
+  --color-input:                   var(--input);
+  --color-ring:                    var(--ring);
+  --color-chart-1:                 var(--chart-1);
+  --color-chart-2:                 var(--chart-2);
+  --color-chart-3:                 var(--chart-3);
+  --color-chart-4:                 var(--chart-4);
+  --color-chart-5:                 var(--chart-5);
+  --color-sidebar:                 var(--sidebar);
+  --color-sidebar-foreground:      var(--sidebar-foreground);
+  --color-sidebar-primary:         var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent:          var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border:          var(--sidebar-border);
+  --color-sidebar-ring:            var(--sidebar-ring);
+  --color-success:                 var(--success);
+  --color-warning:                 var(--warning);
+  --color-info:                    var(--info);
+
+  --font-sans: "Inter", "IBM Plex Sans Arabic", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", "Cascadia Code", monospace;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+/* ============================================================
+   CSS CUSTOM PROPERTIES — Mithaq navy palette
+   Light: Clean white/slate base, deep-navy primary
+   Dark:  Deep navy base, bright accent navy
+   These shadcn-flavored variables are consumed by @theme inline
+   above; they re-use the canonical navy palette declared in
+   styles/tokens.css via `var(--navy-*)` references where it
+   reads cleaner, and direct hex elsewhere for readability.
+   ============================================================ */
+:root {
+  --radius: 0.5rem;
+  --sidebar-width:           240px;
+  --sidebar-collapsed-width: 60px;
+  --header-height:           52px;
+
+  /* ── Light Theme ── */
+  /* Base: pure white background, navy text */
+  --background:              #FFFFFF;
+  --foreground:              #0A2647;
+
+  /* Cards: white with very subtle border */
+  --card:                    #FFFFFF;
+  --card-foreground:         #0A2647;
+  --popover:                 #FFFFFF;
+  --popover-foreground:      #0A2647;
+
+  /* Primary: Mithaq deep navy — used ONLY for key CTAs and active states */
+  --primary:                 #0A2647;
+  --primary-foreground:      #FFFFFF;
+
+  /* Secondary: light slate-blue */
+  --secondary:               #EAF0F8;
+  --secondary-foreground:    #144272;
+
+  /* Muted: very light slate */
+  --muted:                   #F5F8FC;
+  --muted-foreground:        #5A75A0;
+
+  /* Accent: subtle navy tint for hover states */
+  --accent:                  #D8E3F2;
+  --accent-foreground:       #0A2647;
+
+  --destructive:             oklch(0.58 0.22 25);
+  --destructive-foreground:  oklch(0.98 0.005 25);
+
+  /* Borders: pale slate-blue */
+  --border:                  #BFD0E5;
+  --input:                   #BFD0E5;
+  --ring:                    #144272;
+
+  /* Charts */
+  --chart-1:                 #0A2647;
+  --chart-2:                 #2C74B3;
+  --chart-3:                 #2E5A9E;
+  --chart-4:                 #144272;
+  --chart-5:                 #5A8DC6;
+
+  /* Sidebar: clean white with subtle left border */
+  --sidebar:                 #F5F8FC;
+  --sidebar-foreground:      #0A2647;
+  --sidebar-primary:         #0A2647;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent:          #D8E3F2;
+  --sidebar-accent-foreground: #0A2647;
+  --sidebar-border:          #BFD0E5;
+  --sidebar-ring:            #144272;
+
+  --success:                 oklch(0.62 0.16 150);
+  --warning:                 oklch(0.68 0.18 75);
+  --info:                    #2C74B3;
+
+  --shadow-sm:  0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md:  0 4px 12px -2px rgb(0 0 0 / 0.08), 0 2px 4px -1px rgb(0 0 0 / 0.04);
+  --shadow-lg:  0 10px 30px -5px rgb(0 0 0 / 0.10), 0 4px 8px -2px rgb(0 0 0 / 0.06);
+}
+
+/* ── Dark Theme: Mithaq navy palette ── */
+.dark {
+  /* Base: deep navy-black (spec: #050B14 / #041C40) */
+  --background:              #050B14;
+  --foreground:              #E8EEF5;
+
+  --card:                    #0A1424;
+  --card-foreground:         #E8EEF5;
+  --popover:                 #0F1F38;
+  --popover-foreground:      #E8EEF5;
+
+  /* Primary: Mithaq mid-navy on dark */
+  --primary:                 #144272;
+  --primary-foreground:      #FFFFFF;
+
+  --secondary:               #0F1F38;
+  --secondary-foreground:    #E8EEF5;
+
+  --muted:                   #0F1F38;
+  --muted-foreground:        #9DB0CC;
+
+  --accent:                  #16294E;
+  --accent-foreground:       #2E5A9E;
+
+  --destructive:             #EF4444;
+  --destructive-foreground:  #FFFFFF;
+
+  --border:                  #16294E;
+  --input:                   #16294E;
+  --ring:                    #2C74B3;
+
+  --chart-1:                 #2E5A9E;
+  --chart-2:                 #2C74B3;
+  --chart-3:                 #F59E0B;
+  --chart-4:                 #A855F7;
+  --chart-5:                 #EF4444;
+
+  /* Sidebar: darker than background */
+  --sidebar:                 #030710;
+  --sidebar-foreground:      #E8EEF5;
+  --sidebar-primary:         #144272;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent:          #16294E;
+  --sidebar-accent-foreground: #2E5A9E;
+  --sidebar-border:          #0F1F38;
+  --sidebar-ring:            #2C74B3;
+
+  --success:                 #10B981;
+  --warning:                 #F59E0B;
+  --info:                    #2C74B3;
+
+  --shadow-sm:  0 1px 2px 0 rgb(0 0 0 / 0.30);
+  --shadow-md:  0 4px 12px -2px rgb(0 0 0 / 0.40), 0 2px 4px -1px rgb(0 0 0 / 0.25);
+  --shadow-lg:  0 10px 30px -5px rgb(0 0 0 / 0.50), 0 4px 8px -2px rgb(0 0 0 / 0.30);
+}
+
+/* ============================================================
+   BASE STYLES
+   ============================================================ */
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+    border-color: var(--border);
+  }
+
+  html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  body {
+    background-color: var(--bg-primary, var(--background));
+    color: var(--text-primary, var(--foreground));
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  :lang(ar), [dir="rtl"] {
+    font-family: "IBM Plex Sans Arabic", var(--font-sans);
+    line-height: 1.8;
+  }
+
+  h1 { font-size: 1.875rem; font-weight: 700; line-height: 1.25; letter-spacing: -0.025em; }
+  h2 { font-size: 1.5rem;   font-weight: 600; line-height: 1.3;  letter-spacing: -0.02em; }
+  h3 { font-size: 1.25rem;  font-weight: 600; line-height: 1.35; letter-spacing: -0.015em; }
+  h4 { font-size: 1.125rem; font-weight: 500; line-height: 1.4; }
+
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  .skip-to-content {
+    position: absolute;
+    top: -100%;
+    left: 0;
+    z-index: 9999;
+    padding: 0.75rem 1.5rem;
+    background: var(--primary);
+    color: var(--primary-foreground);
+    font-weight: 600;
+    font-size: 0.875rem;
+    border-radius: 0 0 var(--radius) 0;
+    transition: top 0.2s;
+  }
+  .skip-to-content:focus { top: 0; }
+
+  ::selection {
+    background-color: oklch(from var(--primary) l c h / 0.35);
+    color: var(--foreground);
+  }
+
+  .dark ::selection,
+  .dark input::selection,
+  .dark textarea::selection {
+    background-color: rgba(34, 197, 94, 0.4);
+    color: #F1F5F9;
+  }
+
+  ::-webkit-scrollbar { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover { background: var(--muted-foreground); }
+
+  /* ── Section heading glow ──
+     Mirrors the multi-layer text-shadow used on the wordmark next
+     to the logo and on the homepage / about hero titles. Apply
+     to any section heading that should read as a "headline"
+     (capabilities, frameworks, FAQ, etc.) so the brand voice
+     stays consistent across the platform.
+
+       <h2 className="... heading-glow">…</h2>
+
+     Light theme softens the halo opacity automatically via the
+     `.heading-glow.heading-glow-light` override below — we run
+     dark mode by default and the saturated halo would clash on
+     a light background.  */
+  .heading-glow {
+    text-shadow:
+      0 0 2px rgba(220, 235, 255, 0.85),
+      0 0 12px rgba(90, 143, 216, 0.55),
+      0 0 26px rgba(46, 90, 158, 0.30);
+  }
+  html:not(.dark) .heading-glow {
+    text-shadow:
+      0 0 1px rgba(46, 90, 158, 0.30),
+      0 0 8px rgba(90, 143, 216, 0.25);
+  }
+}
+
+/* ============================================================
+   COMPONENT LAYER
+   ============================================================ */
+@layer components {
+
+  .container {
+    width: 100%;
+    max-width: 1280px;
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+  }
+
+  .flex { min-width: 0; min-height: 0; }
+
+  /* ── App Layout Shell ── */
+  .app-layout {
+    display: flex !important;
+    flex-direction: row !important;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    background-color: var(--background);
+    direction: ltr !important;
+  }
+
+  /* ── Sidebar ── */
+  .app-sidebar {
+    width: var(--sidebar-width);
+    min-width: var(--sidebar-width);
+    height: 100vh;
+    background-color: var(--sidebar);
+    border-right: 1px solid var(--sidebar-border);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: width 200ms cubic-bezier(0.4, 0, 0.2, 1),
+                min-width 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    flex-shrink: 0;
+  }
+
+  .app-sidebar.collapsed {
+    width: var(--sidebar-collapsed-width);
+    min-width: var(--sidebar-collapsed-width);
+  }
+
+  .app-main {
+    flex: 1;
+    min-width: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background-color: var(--background);
+  }
+
+  /* ── Stat/Metric card ── */
+  .stat-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+    transition: all 200ms ease;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .stat-card:hover {
+    border-color: oklch(from var(--primary) l c h / 0.30);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-1px);
+  }
+
+  .metric-value {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--foreground);
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+
+  .metric-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--muted-foreground);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .progress-bar {
+    height: 5px;
+    background-color: var(--muted);
+    border-radius: 9999px;
+    overflow: hidden;
+  }
+
+  .progress-bar-fill {
+    height: 100%;
+    border-radius: 9999px;
+    transition: width 600ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .badge-primary {
+    background-color: oklch(from var(--primary) l c h / 0.10);
+    color: var(--primary);
+    border: 1px solid oklch(from var(--primary) l c h / 0.20);
+  }
+
+  .badge-success {
+    background-color: oklch(from var(--success) l c h / 0.10);
+    color: var(--success);
+    border: 1px solid oklch(from var(--success) l c h / 0.20);
+  }
+
+  .badge-warning {
+    background-color: oklch(from var(--warning) l c h / 0.12);
+    color: oklch(0.55 0.18 75);
+    border: 1px solid oklch(from var(--warning) l c h / 0.25);
+  }
+
+  .badge-destructive {
+    background-color: oklch(from var(--destructive) l c h / 0.10);
+    color: var(--destructive);
+    border: 1px solid oklch(from var(--destructive) l c h / 0.20);
+  }
+
+  .skeleton {
+    background: linear-gradient(
+      90deg,
+      var(--muted) 25%,
+      oklch(from var(--muted) calc(l + 0.03) c h) 50%,
+      var(--muted) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s ease-in-out infinite;
+    border-radius: var(--radius);
+  }
+
+  .text-success { color: var(--success); }
+  .text-warning  { color: var(--warning); }
+  .text-info     { color: var(--info); }
+
+  .card-hover {
+    transition: box-shadow 150ms ease, transform 150ms ease, border-color 150ms ease;
+    cursor: pointer;
+  }
+  .card-hover:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-1px);
+    border-color: oklch(from var(--primary) l c h / 0.25);
+  }
+
+  .empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 1.5rem;
+    text-align: center;
+    color: var(--muted-foreground);
+    gap: 0.75rem;
+  }
+
+  .code-block {
+    background-color: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    line-height: 1.6;
+    overflow-x: auto;
+  }
+
+  .sidebar-item {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    padding: 0.4375rem 0.75rem;
+    border-radius: var(--radius-md);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--sidebar-foreground);
+    text-decoration: none;
+    transition: background-color 150ms ease, color 150ms ease;
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .sidebar-item:hover {
+    background-color: var(--sidebar-accent);
+    color: var(--sidebar-accent-foreground);
+  }
+
+  .sidebar-item.active {
+    background-color: oklch(from var(--sidebar-primary) l c h / 0.12);
+    color: var(--sidebar-primary);
+  }
+
+  .sidebar-item.active:hover {
+    background-color: oklch(from var(--sidebar-primary) l c h / 0.18);
+  }
+}
+
+/* ============================================================
+   ANIMATIONS — Mithaq Motion System
+   Professional, subtle, modern. Performance-first (GPU-composited).
+   ============================================================ */
+
+/* ── Keyframes ── */
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@keyframes rq-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes rq-fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes rq-fade-up-sm {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes rq-fade-down {
+  from { opacity: 0; transform: translateY(-12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes rq-slide-in-right {
+  from { opacity: 0; transform: translateX(20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes rq-slide-in-left {
+  from { opacity: 0; transform: translateX(-20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes rq-scale-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes rq-scale-up {
+  from { opacity: 0; transform: scale(0.9); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes rq-blur-in {
+  from { opacity: 0; filter: blur(8px); transform: translateY(6px); }
+  to   { opacity: 1; filter: blur(0); transform: translateY(0); }
+}
+
+@keyframes rq-glow-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 oklch(from var(--primary) l c h / 0); }
+  50%      { box-shadow: 0 0 16px 2px oklch(from var(--primary) l c h / 0.15); }
+}
+
+@keyframes rq-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-4px); }
+}
+
+@keyframes rq-count-pulse {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+@keyframes rq-check-in {
+  0%   { opacity: 0; transform: scale(0.5) rotate(-10deg); }
+  60%  { transform: scale(1.1) rotate(2deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0); }
+}
+
+@keyframes rq-shake {
+  0%, 100% { transform: translateX(0); }
+  20%      { transform: translateX(-4px); }
+  40%      { transform: translateX(4px); }
+  60%      { transform: translateX(-3px); }
+  80%      { transform: translateX(2px); }
+}
+
+/* ── Instant animation classes (play on mount) ── */
+.animate-fade-in      { animation: rq-fade-in 400ms ease forwards; }
+.animate-fade-up      { animation: rq-fade-up 500ms cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.animate-fade-up-sm   { animation: rq-fade-up-sm 300ms ease forwards; }
+.animate-fade-down    { animation: rq-fade-down 400ms ease forwards; }
+.animate-slide-in-r   { animation: rq-slide-in-right 400ms cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.animate-slide-in-l   { animation: rq-slide-in-left 400ms cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.animate-scale-in     { animation: rq-scale-in 300ms cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.animate-scale-up     { animation: rq-scale-up 500ms cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.animate-blur-in      { animation: rq-blur-in 500ms cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.animate-check-in     { animation: rq-check-in 500ms cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.animate-shake        { animation: rq-shake 400ms ease; }
+.animate-glow         { animation: rq-glow-pulse 2s ease-in-out infinite; }
+.animate-float        { animation: rq-float 3s ease-in-out infinite; }
+.animate-count-pulse  { animation: rq-count-pulse 300ms ease; }
+
+/* ── Stagger delays (use with animate-* classes) ── */
+.delay-1 { animation-delay: 50ms;  opacity: 0; }
+.delay-2 { animation-delay: 100ms; opacity: 0; }
+.delay-3 { animation-delay: 150ms; opacity: 0; }
+.delay-4 { animation-delay: 200ms; opacity: 0; }
+.delay-5 { animation-delay: 250ms; opacity: 0; }
+.delay-6 { animation-delay: 300ms; opacity: 0; }
+.delay-7 { animation-delay: 350ms; opacity: 0; }
+.delay-8 { animation-delay: 400ms; opacity: 0; }
+
+/* ── Scroll-triggered animations (via IntersectionObserver) ── */
+.scroll-animate {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 600ms cubic-bezier(0.22, 1, 0.36, 1),
+              transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.scroll-animate.scroll-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scroll-animate-scale {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 500ms cubic-bezier(0.22, 1, 0.36, 1),
+              transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.scroll-animate-scale.scroll-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.scroll-animate-left {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: opacity 600ms cubic-bezier(0.22, 1, 0.36, 1),
+              transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.scroll-animate-left.scroll-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.scroll-animate-right {
+  opacity: 0;
+  transform: translateX(30px);
+  transition: opacity 600ms cubic-bezier(0.22, 1, 0.36, 1),
+              transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.scroll-animate-right.scroll-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Stagger delays for scroll animations */
+.scroll-delay-1 { transition-delay: 80ms; }
+.scroll-delay-2 { transition-delay: 160ms; }
+.scroll-delay-3 { transition-delay: 240ms; }
+.scroll-delay-4 { transition-delay: 320ms; }
+.scroll-delay-5 { transition-delay: 400ms; }
+.scroll-delay-6 { transition-delay: 480ms; }
+
+/* ── Interactive hover effects ── */
+.hover-lift {
+  transition: transform 250ms cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 250ms ease;
+}
+.hover-lift:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px -5px rgb(0 0 0 / 0.15), 0 4px 10px -3px rgb(0 0 0 / 0.08);
+}
+
+.hover-glow {
+  transition: box-shadow 300ms ease, border-color 300ms ease;
+}
+.hover-glow:hover {
+  box-shadow: 0 0 20px -4px oklch(from var(--primary) l c h / 0.2);
+  border-color: oklch(from var(--primary) l c h / 0.35);
+}
+
+.hover-scale {
+  transition: transform 200ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.hover-scale:hover {
+  transform: scale(1.03);
+}
+.hover-scale:active {
+  transform: scale(0.98);
+}
+
+.hover-shine {
+  position: relative;
+  overflow: hidden;
+}
+.hover-shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.06) 45%, rgba(255,255,255,0.12) 50%, rgba(255,255,255,0.06) 55%, transparent 60%);
+  transform: translateX(-100%);
+  transition: transform 600ms ease;
+}
+.hover-shine:hover::after {
+  transform: translateX(100%);
+}
+
+/* ── Button press effect ── */
+.btn-press {
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+.btn-press:hover {
+  transform: translateY(-1px);
+}
+.btn-press:active {
+  transform: translateY(1px) scale(0.98);
+  box-shadow: none;
+}
+
+/* ── Input focus glow ── */
+.input-glow:focus {
+  box-shadow: 0 0 0 3px oklch(from var(--primary) l c h / 0.12);
+}
+
+/* ── Card border shimmer on hover ── */
+.card-shimmer {
+  transition: border-color 300ms ease, box-shadow 300ms ease, transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.card-shimmer:hover {
+  border-color: oklch(from var(--primary) l c h / 0.3);
+  box-shadow: 0 4px 20px -4px oklch(from var(--primary) l c h / 0.12);
+  transform: translateY(-2px);
+}
+
+/* ── Page entrance (for auth/standalone pages) ── */
+.page-enter {
+  animation: rq-fade-up 600ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.page-enter-fast {
+  animation: rq-fade-up-sm 350ms ease forwards;
+}
+
+/* ── Respect reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .scroll-animate,
+  .scroll-animate-scale,
+  .scroll-animate-left,
+  .scroll-animate-right {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 768px) {
+  h1 { font-size: 1.5rem; }
+  h2 { font-size: 1.25rem; }
+  .metric-value { font-size: 1.75rem; }
+  .container { padding-inline: 1rem; }
+}
+
+/* ============================================================
+   PRINT
+   ============================================================ */
+@media print {
+  .no-print { display: none !important; }
+  body { background: white; color: black; }
+}
+
+/* Old hardcoded light-mode overrides removed.
+   All components now use CSS variables from tokens.css.
+   Light/dark mode handled entirely via --var switching. */
